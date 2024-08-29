@@ -1,0 +1,21 @@
+{% extends "layout/app-layout.html" %}
+
+{% block 'content' %}
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+<style> body{background-image:url(https://img.freepik.com/free-photo/front-view-doctor-holding-tubes_23-2149994394.jpg?t=st=1724434107~exp=1724437707~hmac=b1e6cc030e233583772e6a20ca449d708e76922c3cced3a50261422fd6cd24b6&w=2000) ;}</style>
+<br>
+<br>
+<br>
+    <p>You are currently logged in as {{ user.username }}.</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit">Log Out</button>
+    </form>
+  </head>
+{% endblock %}

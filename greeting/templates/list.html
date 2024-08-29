@@ -1,0 +1,49 @@
+{% extends 'layout/app-layout.html' %}
+{% block 'content' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    
+    <style>
+        body{background-image: url(https://previews.123rf.com/images/9dreamstudio/9dreamstudio1808/9dreamstudio180801400/107200453-infuenza-vaccine-in-syringe-near-stethoscope-on-white-background-top-view.jpg);}
+    </style>
+    <title>Product List</title>
+</head>
+<body>
+    <br>
+    <br>
+<div>
+    <h1>Product List</h1>
+    <ul>
+        {% for product in page_obj %}
+            <li>
+                <strong>{{ product.name }}</strong><br>
+                Stock Left: {{ product.stockleft }}<br>
+                Added Time: {{ product.added_time }}
+            </li>
+        {% empty %}
+            <li>No products available.</li>
+        {% endfor %}
+    </ul>
+
+    {% if page_obj.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <span>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+</div>
+</body>
+</html>
+
+{% endblock %}

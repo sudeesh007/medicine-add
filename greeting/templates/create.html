@@ -1,0 +1,91 @@
+{% extends 'layout/app-layout.html' %}
+{% block 'content' %}
+<style>
+    body {
+        color: crimson;
+        background-image: url(https://img.freepik.com/free-photo/scientist-chemist-researcher-doctor-analyzing-dna-sample-using-medical-microscope-developing-vaccine-against-coronavirus-biochemistry-experiment-hospital-laboratory-medicine-concept_482257-28267.jpg?t=st=1724434148~exp=1724437748~hmac=6dd78b1424f2cb9d0108f877eb3884a108720afceaa65338ae8508a740fdc6c9&w=2000);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Style for the navigation bar (assumed to be fixed at the top) */
+    nav {
+        background-color: #333; /* Dark background color for the navbar */
+        color: white;
+        padding: 10px 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+        padding: 10px 20px;
+        margin-right: 140px;
+    }
+
+    nav a:hover {
+        background-color: #575757;
+        border-radius: 4px;
+    }
+
+    .container {
+        margin: auto;
+        margin-top: 100px; /* Adjust this value to create space below the navbar */
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: rgba(0, 90, 216, 0.5);
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+    }
+
+    h1 {
+        color: blueviolet;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    input[type="text"], 
+    input[type="number"], 
+    input[type="submit"] {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>ADD Product</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}

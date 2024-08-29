@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    
+
+    <title>Sign Up</title>
+    <style>
+        body {
+            background-image: url(https://img.freepik.com/free-photo/scientist-chemist-researcher-doctor-analyzing-dna-sample-using-medical-microscope-developing-vaccine-against-coronavirus-during-biochemistry-experiment-hospital-laboratory-medicine-concept_482257-28267.jpg?w=2000&t=st=1724431729~exp=1724432329~hmac=80605a07d7544a14a6ba93c2923fa5021583360fbc43115106150c27dbe44cb3);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-repeat: no-repeat;
+        }
+
+        .form-container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(18, 17, 17, 0.2);
+            max-width: 500px;
+            width: 100%;
+            box-sizing: border-box; 
+            
+        }
+
+        h2 {
+            color: #1406da;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #f64708;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px); 
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding is included in width */
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #49b8a0;
+            outline: none;
+        }
+
+        button {
+            background-color: #c42626;
+            color: white;
+            border: none;
+            padding: 8px 16px; /* Reduced padding */
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: auto; /* Allows button to fit its content */
+            display: block; /* Ensures the button is centered */
+            margin: 0 auto; /* Center the button */
+        }
+
+        button:hover {
+            background-color: #f64708;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link a {
+            color: #ef214a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_username">Username:</label>
+            <input type="text" id="id_username" name="username">
+            {% if form.errors.username %}
+                <p class="error-message">{{ form.errors.username }}</p>
+            {% endif %}
+            <br>
+            <br>
+            <label for="id_password1">Password:</label>
+            <input type="password" id="id_password1" name="password1">
+            {% if form.errors.password1 %}
+                <p class="error-message">{{ form.errors.password1 }}</p>
+            {% endif %}
+            <br>
+            <br>
+            
+            <label for="id_password2">Confirm Password:</label>
+            <input type="password" id="id_password2" name="password2">
+            {% if form.errors.password2 %}
+                <p class="error-message">{{ form.errors.password2 }}</p>
+            {% endif %}
+            <br>
+            <br>
+            
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <div class="login-link">
+            <h4>Already have an account? <a href="{% url 'authenticate' %}">Login</a></h4>
+        </div>
+    </div>
+</body>
+</html>

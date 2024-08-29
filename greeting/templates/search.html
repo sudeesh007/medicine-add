@@ -1,0 +1,67 @@
+{%extends 'layout/app-layout.html'%}
+{%block 'content'%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Search</title>
+
+ <style >
+    body{background-image: url(https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjg3MC1teW50LTIwXzFfMi5qcGc.jpg) ;}
+ </style>  
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+<h1 style="color: blueviolet;">SEARCH FOR DESIRED PRODUCTS</h1>
+
+<input type="text" id="search-input" placeholder="Search for products">
+<div id="search-results"></div>
+
+<!-- Include JavaScript code for AJAX search -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search-input').on('input', function() {
+            var query = $(this).val().trim();
+            if (query.length > 0) {
+                $.ajax({
+                    url: "{% url 'search_products' %}",
+                    type: 'GET',
+                    data: {q: query},
+                    success: function(response) {
+                        $('#search-results').empty();
+                        if (response.length > 0) {
+                            var resultList = $('<ul></ul>');
+                            response.forEach(function(product) {
+                                resultList.append('<li>' + product.name + '</li>');
+                            });
+                            $('#search-results').append(resultList);
+                        } else {
+                            $('#search-results').text('No products found.');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            } else {
+                $('#search-results').empty();
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>
+{% endblock %}
